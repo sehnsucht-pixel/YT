@@ -313,9 +313,42 @@
     stroke: var(--gold);
   }
 
-  /* Available vs coming soon states */
+  /* Available chapters — highlighted */
+  .chapter-card.available {
+    border-color: var(--gold-dim);
+    background: linear-gradient(145deg, #2a2619, #241f16);
+    box-shadow: 0 0 12px rgba(184, 148, 62, 0.08);
+  }
+
+  .chapter-card.available .card-num {
+    color: var(--gold);
+  }
+
+  .chapter-card.available .card-chinese {
+    opacity: 0.7;
+    color: var(--gold);
+  }
+
+  .chapter-card.available::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  .chapter-card.available:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(184, 148, 62, 0.2);
+  }
+
+  /* Coming soon — dimmed */
   .chapter-card.coming-soon {
-    opacity: 0.3;
+    opacity: 0.2;
     cursor: default;
     pointer-events: none;
   }
@@ -532,7 +565,7 @@ const grid = document.getElementById('chapterGrid');
 for (let i = 1; i <= TOTAL_CHAPTERS; i++) {
   const isAvailable = i <= RELEASED_CHAPTERS;
   const card = document.createElement('a');
-  card.className = `chapter-card${isAvailable ? '' : ' coming-soon'}`;
+  card.className = `chapter-card${isAvailable ? ' available' : ' coming-soon'}`;
 
   if (isAvailable) {
     card.href = `chapters/tao_chapter_${i}.html`;
@@ -565,6 +598,9 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
